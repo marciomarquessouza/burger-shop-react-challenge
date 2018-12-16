@@ -9,7 +9,7 @@ class BurgerBuilder extends Component {
         <div>Build Controls</div>
       </Aux>
     );
-  }
+  };
 };
 
 export default BurgerBuilder;
