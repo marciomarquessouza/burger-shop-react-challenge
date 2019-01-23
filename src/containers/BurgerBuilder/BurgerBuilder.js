@@ -66,10 +66,13 @@ class BurgerBuilder extends Component {
     .reduce((sum, el) => {
       return sum + el;
     },0);
-    this.setState({ purchasable: sum > 0 })
+    this.setState({ purchasable: sum > 0 });
   };
-  purchaseHandler() {
-    this.seState({ })
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
+  };
+  purchaseCancelHandler = () => {
+    this.setState({ purchasing: false });
   };
   render() {
     const disabledInfo = {
@@ -80,7 +83,7 @@ class BurgerBuilder extends Component {
     }
     return(
       <Aux>
-        <Modal>
+        <Modal show = { this.state.purchasing } modalClosed = { this.purchaseCancelHandler }>
           <OrderSummary ingredients={ this.state.ingredients }></OrderSummary>
         </Modal>
         <Burger ingredients={ this.state.ingredients }></Burger>
@@ -90,6 +93,7 @@ class BurgerBuilder extends Component {
           disabled = { disabledInfo }
           purchasable = { this.state.purchasable }
           totalPrice = { this.state.totalPrice }
+          ordered = { this.purchaseHandler }
         >
         </BuildControls>
         <div>Build Controls</div>
